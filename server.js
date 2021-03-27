@@ -23,9 +23,14 @@ app.get("/exercise", (req, res) => {
 
 app.get("/api/workouts", (req, res) => {
     // Send a json of all the workouts
+    db.Workout.find().lean()
+      .then(workouts => {
+        res.json(workouts);
+      })
+      .catch(err => {
+        res.json(err);
+      });
 });
-
-app.getMaxListeners
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
